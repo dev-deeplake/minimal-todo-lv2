@@ -1,6 +1,7 @@
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes, css } from "styled-components"
 import * as sVar from "./styleVariables"
 import { Link } from "react-router-dom"
+
 
 export const AppContainer = styled.div`
     width: 100%;
@@ -36,6 +37,9 @@ export const HeaderContainer = styled.div`
     margin-bottom: 80px;
 
     > h1 {
+        font-size: 26pt;
+        font-weight: bold;
+        margin-bottom: ${sVar.cardOutsideMargin};
         animation-duration: 2s;
         animation-name: ${introAnimation};
         transition-timing-function: linear;
@@ -68,7 +72,7 @@ export const HeaderContainer = styled.div`
 //     animation-direction: alternate; 
 // `
 
-const TodoBtnDefault = styled.button`
+export const TodoBtnDefault = styled.button`
     border: 2px solid ${sVar.lightGreen};
     border-radius: ${sVar.borderRadiusMini};
     padding: 10px 20px;
@@ -104,7 +108,7 @@ export const InputWrap = styled.div`
   > span {
     color: ${sVar.strongShadow};
     display: flex;
-    width: 160px;
+    width: 140px;
   }
 
   > input {
@@ -134,6 +138,8 @@ export const TodoListContainer = styled.div`
 
 export const TodoListTitle = styled.div`
   display: flex;
+  font-size: 14pt;
+  color: ${sVar.defaultBlack};
   align-items: center;
   justify-content: center;
   width: 100px;
@@ -153,12 +159,13 @@ export const TodoListEntries = styled.div`
 `
 
 export const TodoCardContainer = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    width: 240px;
-    min-height: 200px;
+    width: 260px;
+    min-height: 270px;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #eee;
@@ -168,10 +175,13 @@ export const TodoCardContainer = styled.div`
 export const TodoCardTextWrap = styled.div`
     > div {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
-        line-break: keep-all;
-        word-break: keep-all;
+        line-break: break-all;
+        word-break: break-all;
+        margin: 20px 10px 10px 20px;
+        margin-bottom: 10px;
+        margin-top: 20px;
     }
 `
 
@@ -184,7 +194,9 @@ export const TodoCardTextWrap = styled.div`
 // `
 
 export const TodoCardTextBody = styled.p`
-    min-height: 120px;
+    padding: 0 20px;
+    max-width: 200px;
+    word-break: break-all;
     
 `
 
@@ -203,29 +215,31 @@ export const TodoCardDetails = styled.p`
     color: ${sVar.defaultBlack};
     font-size: 11pt;
     text-align: right;
-    margin: 0;
+    margin-right: 10px;
     padding-right: 0.6rem;
+    margin-bottom: 20px;
 `
 
 export const TodoCardBtnWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin: 20px 0 10px 0;
     gap: 10px;
 `
 
 export const TodoCardTitle = styled.p`
+    max-width: 220px;
     font-size: 14pt;
     font-weight: bold;
-    line-break: keep-all;
-    word-break: keep-all;
+    word-wrap: break-word;
+    margin-right: 10px;
 `
 
 export const TodoBtnRevert = styled(TodoBtnDefault)`
     border: 2px solid rgba(235, 52, 52, 0.8);
     padding: 5px 10px;
-    color: ${sVar.defaultBlack};
+    color: ${sVar.strongShadow};
     &:hover {
         background-color: rgba(235, 52, 52, 0.5);
         border: 2px solid rgba(235, 52, 52, 0.7);
@@ -233,13 +247,14 @@ export const TodoBtnRevert = styled(TodoBtnDefault)`
 `
 
 export const TodoBtnDone = styled(TodoBtnDefault)`
+    border: 2px solid rgba(0, 92, 83, 0.6);
     padding: 5px 10px;
-    color: ${sVar.defaultBlack};
+    color: ${sVar.strongShadow};
 `
 
 export const TodoBtnDelete = styled(TodoBtnDefault)`
     padding: 5px 10px;
-    color: ${sVar.defaultBlack};
+    color: ${sVar.strongShadow};
     &:hover {
         color: #FBFBFD;
         background-color: rgba(4, 41, 64, 0.6);
@@ -248,3 +263,71 @@ export const TodoBtnDelete = styled(TodoBtnDefault)`
     }
 `
 
+export const DetailContainer = styled.div`
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 20px 800px ${sVar.lightShadow} inset;
+
+    > div {
+        box-sizing: border-box;
+        width: 600px;
+        height: 450px;
+        background-color: ${sVar.defaultWhite};
+        border-radius: ${sVar.borderRadiusBig};
+        box-shadow: 6px 6px 10px ${sVar.lightShadow};
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 60px 80px 40px 80px;
+        
+    }
+`
+
+export const DetailTitleWrap = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+`
+
+export const DetailTitle = styled.h2`
+    color: ${sVar.defaultBlack};
+    font-size: 20pt;
+    font-weight: bold;
+`
+
+export const DetailID = styled.span`
+    color: ${sVar.strongShadow};
+`
+
+export const DetailBody = styled.p`
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 50px;
+    color: ${sVar.defaultBlack};
+
+  /* Chrome, Edge, and Safari */
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Internet Explorer and legacy Edge */
+  -ms-overflow-style: none;
+`
+
+export const DetailCloseBtn = styled(TodoBtnDefault)`
+    box-sizing: border-box;
+    position: absolute;
+    left: 42%;
+    bottom: 5%;
+    width: 100px;
+`

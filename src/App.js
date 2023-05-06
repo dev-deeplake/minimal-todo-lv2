@@ -1,9 +1,14 @@
 // import './App.css';
+import React from "react";
 import Router from './shared/Router';
+import GlobalStyles from './globalStyles';
 
 function App() {
   return (
-    <Router />
+    <>
+      <GlobalStyles />
+      <Router />
+    </>
   );
 }
 
