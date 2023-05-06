@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components"
+import styled, { keyframes } from "styled-components"
 import * as sVar from "./styleVariables"
 import { Link } from "react-router-dom"
 
